@@ -1,18 +1,23 @@
-"use client";
-import Link from "next/link";
+'use client';
+import { useDarkMode } from '@/hooks/useDarkMode';
 
-export default function Navbar() {
+export function Navbar() {
+  const [isDark, toggleTheme] = useDarkMode();
+
   return (
-    <header className="bg-black shadow p-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold">ZenTravail</h1>
-      <nav className="space-x-4">
-        <Link href="/" className="text-blue-600 hover:underline">
-          Home
-        </Link>
-        <Link href="/exams" className="text-blue-600 hover:underline">
-          Exams
-        </Link>
-      </nav>
+    <header className="w-full px-6 py-4 bg-white dark:bg-gray-900 shadow">
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        <h1 className="text-xl font-bold text-gray-800 dark:text-white">
+          Travail
+        </h1>
+
+        <button
+          onClick={toggleTheme}
+          className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded-full"
+        >
+          {isDark ? '🌙 Dark' : '☀️ Light'}
+        </button>
+      </div>
     </header>
   );
 }
